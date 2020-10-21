@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href="gofood.png" />
+    <style>
+        body {
+            background-image: url('bg.jpg');
+            cursor: url(http://cur.cursors-4u.net/cursors/cur-11/cur1054.cur), auto;
+        }
+
+        h1 {
+            color: #864e79;
+            font-family: "lucida console";
+            font-size: 28px;
+
+        }
+
+        form {
+            border: 4px solid #864e79;
+            background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+            width: 600px;
+            padding: 50px;
+            font-family: "lucida console";
+            text-align: center;
+            font-size: 15px;
+        }
+
+
+        .new {
+            font-style: bold;
+            color: #864e79;
+            font-family: "lucida console";
+            font-size: 15px;
+            text-decoration: underline;
+        }
+
+
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .food-image {
+            width: 100px;
+            height: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        input {
+            width: 200px;
+            height: 20px;
+        }
+
+        .button {
+            width: 100px;
+            height: 30px;
+            background-color: #864e79;
+            border: none;
+            color: white;
+            text-align: center;
+            transition-duration: 0.4s;
+            cursor: pointer;
+
+        }
+
+        .button1 {
+            background-color: white;
+            color: #864e79;
+            font-family: "lucida console";
+            font-size: 15px;
+            border: 2px solid #864e79;
+        }
+
+        .button1:hover {
+            background-color: #4b2041;
+            color: white;
+        }
+
+        .previous-btn {
+            background-color: #864e79;
+            color: white;
+            border-radius: 50%;
+            padding: 10px;
+            margin: auto auto auto 280px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><span><a href="index.html" class="button1 previous-btn">&#8249;</a>
+        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;
+        Add New Food?</h1>
+    <form class="center">
+        <label for="name">Name :</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="price">Price : </label><br>
+        <input type="text" id="price" name="price">
+        <br><br><br>
+        <input type="submit" value="Submit" class="button button1">
+    </form>
+</body>
+
+</html>
