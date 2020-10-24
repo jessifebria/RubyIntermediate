@@ -30,10 +30,14 @@ PRIMARY KEY (id)
 );
 
 CREATE TABLE orderdetails (
+id INT NOT NULL AUTO_INCREMENT,
 order_id INT NOT NULL, 
 item_id INT NOT NULL,
+jumlah INT NOT NULL,
+pricenow INT NOT NULL,
 FOREIGN KEY (order_id) REFERENCES orders(id),
-FOREIGN KEY (item_id) REFERENCES items(id)
+FOREIGN KEY (item_id) REFERENCES items(id),
+PRIMARY KEY(id)
 );
 
 
@@ -68,24 +72,25 @@ INSERT INTO orders(date, customer_id)  VALUES
 ('2020-10-22', '4'),
 ('2020-10-22', '5');
 
-INSERT INTO orderdetails VALUES
-(1, 1),
-(1, 8),
-(1, 2),
-(2, 7),
-(2, 3),
-(3, 6),
-(3, 4),
-(3, 5),
-(4, 1),
-(4, 2),
-(4, 3),
-(5, 4),
-(5, 5),
-(5, 6),
-(5, 7);
+INSERT INTO orderdetails(order_id,item_id,jumlah,pricenow) VALUES
+(1, 1, 1, 18000),
+(1, 8, 2, 45000),
+(1, 2, 2, 35000),
+(2, 7, 1, 10000),
+(2, 3, 1, 20000),
+(3, 6, 1, 8000),
+(3, 4, 3, 15000),
+(3, 5, 1, 12000),
+(4, 1, 1, 18000),
+(4, 2, 1, 35000),
+(4, 3, 2, 20000),
+(5, 4, 2, 15000),
+(5, 5, 1, 12000),
+(5, 6, 2, 8000),
+(5, 7, 3, 10000);
 
-SELECT o.id 'Order ID', date_format(o.date,"%W %M %e %Y") 'Order Date', c.name 'Customer Name', c.phone 'Customer Phone', concat('Rp. ', format(i.price,2)) 'Total' , group_concat(' ', i.name) 'Items Bought'
+SELECT o.id 'Order ID', date_format(o.date,"%W %M %e %Y") 'Order Date', c.name 'Customer Name', 
+c.phone 'Customer Phone', concat('Rp. ', format(sum(od.pricenow*od.jumlah),2)) 'Total' , group_concat(' ', i.name) 'Items Bought'
 from ((orders o inner join customers c on o.customer_id = c.id) 
 inner join orderdetails od on o.id =  od.order_id)
 inner join items i on od.item_id = i.id
