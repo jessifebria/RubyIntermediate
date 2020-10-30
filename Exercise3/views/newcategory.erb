@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href="gofood.png" />
+   
+    <style>
+        body {
+            background-image: url('bg.jpg');
+            cursor: url(http://cur.cursors-4u.net/cursors/cur-11/cur1054.cur), auto;
+        }
+
+        h1 {
+            color: #864e79;
+            font-family: "lucida console";
+            font-size: 28px;
+
+        }
+
+        form {
+            border: 4px solid #864e79;
+            background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+            width: 600px;
+            padding: 50px;
+            font-family: "lucida console";
+            text-align: center;
+            font-size: 15px;
+        }
+
+
+        .new {
+            font-style: bold;
+            color: #864e79;
+            font-family: "lucida console";
+            font-size: 15px;
+            text-decoration: underline;
+        }
+
+
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .food-image {
+            width: 100px;
+            height: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        input {
+            width: 200px;
+            height: 20px;
+        }
+
+        .button {
+            width: 100px;
+            height: 30px;
+            background-color: #864e79;
+            border: none;
+            color: white;
+            text-align: center;
+            transition-duration: 0.4s;
+            cursor: pointer;
+
+        }
+
+        .button1 {
+            background-color: white;
+            color: #864e79;
+            font-family: "lucida console";
+            font-size: 15px;
+            border: 2px solid #864e79;
+        }
+
+        .button1:hover {
+            background-color: #4b2041;
+            color: white;
+        }
+
+        .previous-btn {
+            background-color: #864e79;
+            color: white;
+            border-radius: 50%;
+            padding: 10px;
+            margin: auto auto auto 280px;
+        }
+
+         .message {
+          font-style: bold;
+          color: red;
+          font-family: "lucida console";
+          font-size: 13px;
+          text-align: center;
+      }
+
+      table {
+          border: 4px solid #864e79;
+
+      }
+      
+      .th,
+      td {
+          border: 1px solid #864e79;
+      }
+    </style>
+</head>
+
+<body>
+    <h1><span><a href="/listfood" class="button1 previous-btn">&#8249;</a>
+        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;
+        Add New Category</h1>
+   
+    <form class="center" action="/addcategory" method="POST"> <table class="center">
+    <table class="center"> 
+      <thead>
+        <tr>
+            <b>
+            <th>Category ID</th>
+          </b>
+          <b>
+            <th>Category Name</th>
+          </b>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <% categories.each do |category| %>
+          <tr>
+            <td><%= category.id[0] %></td>
+            <td><%= category.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+        <label for="name">Category Name :</label><br>
+        <input type="text" name="name" required><br><br>
+        <input type="submit" value="Submit" class="button button1">
+        <h2 class="message center"><%= messagecategory %></h2>
+    </form>
+</body>
+
+</html>
