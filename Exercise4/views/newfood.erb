@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href="gofood.png" />
+    <link rel="stylesheet" type="text/css" href="<%= URI("/style.css")%>">
+</head>
+
+<body>
+<br>
+    <h1 style="margin: 10px auto auto 290px;"><span><a href="/listfood" class="button1 previous-btn">&#8249;</a>
+        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;
+        Add New Food</h1>
+        <br><br>
+   
+    <form class="center" action="/addfood" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+         <label >Upload Image</label><br>
+         <br><br>
+        <input type="file" name="file" value="" id="file">
+        <br><br>
+        <label for="name">Name :</label><br>
+        <input type="text" name="name" required class="inputstyle"><br><br>
+        <label for="price">Price : </label><br>
+        <input type="text"  name="price" required class="inputstyle"><br><br>
+        <label for="category">Category : </label><br><br>
+        <div class="checkbox-group required">
+        <% categories.each do | category | %>
+            <input type="checkbox"  name="categoryid[]" value=<%=category.id%> >
+            <label> <%= category.name %></label><br>
+         <% end %>
+         </div>
+        <br><br><br>
+        <input type="submit" value="Submit" class="button button1">
+    </form>
+    <script>
+        $('div.checkbox-group.required :checkbox:checked').length > 0
+    </script>
+</body>
+
+
+
+</html>

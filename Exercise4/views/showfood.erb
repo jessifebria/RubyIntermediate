@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href= 'gofood.png' />
+    <link rel="stylesheet" type="text/css" href="<%= URI("/style.css")%>">
+    
+  </head>
+
+<body>
+<br>
+    <h1 style="margin: 5px auto auto 330px;"><span><a href="/listfood" class="button1 previous-btn">&#8249;</a>
+        </span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        Show Food </h1>
+        <br><br>
+    <table class="center">
+        <tr>
+            <b>
+                <th>ID</th>
+            </b>
+            <b>
+                <th>Name</th>
+            </b>
+            <b>
+                <th>Image</th>
+            </b>
+            <b>
+                <th>Price</th>
+            </b>
+             <b>
+                <th>Categories</th>
+            </b>
+        </tr>
+        <tr>
+            <td> <%= item.id%> </td>
+            <td> <%= item.name %> </td>
+            <td> <%= image %> </td>
+            <td> <%= item.price %> </td>
+            <td> <%= listcategories %> </td>
+        </tr>
+    </table>
+</body>
+
+</html>

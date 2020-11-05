@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href= 'gofood.png' />
+    <link rel="stylesheet" type="text/css" href="<%= URI("/style.css")%>">
+    
+  </head>
+
+<body>
+<br>
+    <h1 style="margin: 5px auto auto 280px;"><span><a href="/listfood" class="button1 previous-btn">&#8249;</a>
+        </span>&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;
+        Edit Food <%= item.name %></h1>
+        <br><br>
+    
+    <form class="center" action="/edit/<%= item.id %>" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+        <%= image %>
+        <br><br>
+        <input type="file" name="file" value="" id="file"> &emsp;
+        <input type="checkbox" name="reqdelete" value="1">
+        <label > Delete Image</label>
+        <br><br>
+        <label for="name">New Name : </label><br>
+        <input type="text" name="name" value= "<%= item.name %>" required><br><br>
+        <label for="price">New Price : </label><br>
+        <input type="text"  name="price" value="<%= item.price %>" required><br><br>
+        <label for="category">Category : </label><br><br>
+        <% categories.each do | category | %>
+            <input type="checkbox"  name="categoryid[]" value=<%=category.id%> >
+            <label> <%= category.name %></label>
+         <% end %>
+        <br><br><br>
+        <input type="submit" value="Submit" class="button button1">
+    </form>
+</body>
+
+</html>
