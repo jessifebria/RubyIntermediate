@@ -24,8 +24,6 @@ CREATE TABLE items (
 id INT NOT NULL AUTO_INCREMENT, 
 name VARCHAR(50) NOT NULL, 
 price INT DEFAULT 0, 
-category_id VARCHAR(5) NOT NULL,
-FOREIGN KEY (category_id) REFERENCES categories(id),
 PRIMARY KEY (id)
 );
 
@@ -40,6 +38,14 @@ FOREIGN KEY (item_id) REFERENCES items(id),
 PRIMARY KEY(id)
 );
 
+CREATE TABLE categorydetails (
+id INT NOT NULL AUTO_INCREMENT,
+category_id VARCHAR(5) NOT NULL,
+item_id INT NOT NULL,
+FOREIGN KEY (category_id) REFERENCES categories(id),
+FOREIGN KEY (item_id) REFERENCES items(id),
+PRIMARY KEY(id)
+);
 
 INSERT INTO categories  VALUES
 ('F001', 'Main Dish'),
@@ -88,6 +94,23 @@ INSERT INTO orderdetails(order_id,item_id,jumlah,pricenow) VALUES
 (5, 5, 1, 12000),
 (5, 6, 2, 8000),
 (5, 7, 3, 10000);
+
+INSERT INTO categorydetails(category_id, item_id) VALUES
+(F001, 1),
+(F001, 2),
+(F002, 3),
+(F003, 4),
+(F003, 5),
+(F004, 6),
+(F004, 7),
+(F002, 8),
+(F005, 8),
+(F008, 8),
+(F002, 9),
+(F005, 9),
+(F008, 9),
+(F002, 10),
+(F001, 11);
 
 SELECT o.id 'Order ID', date_format(o.date,"%W %M %e %Y") 'Order Date', c.name 'Customer Name', 
 c.phone 'Customer Phone', concat('Rp. ', format(sum(od.pricenow*od.jumlah),2)) 'Total' , group_concat(' ', i.name) 'Items Bought'
