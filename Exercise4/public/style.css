@@ -1,0 +1,123 @@
+
+      body {
+          background-image: url('bg.jpg');
+          cursor: url(http://cur.cursors-4u.net/cursors/cur-11/cur1054.cur), auto;
+      }
+      
+      h1 {
+          color: #864e79;
+          font-family: "lucida console";
+          font-size: 28px;
+      }
+
+      
+      a {
+            color: #864e79;
+            font-family: "lucida console";
+            font-size: 15px;
+            text-decoration: underline;
+        }
+      
+      .new {
+          font-style: bold;
+          color: #864e79;
+          font-family: "lucida console";
+          font-size: 18px;
+          text-decoration: underline;
+      }
+
+      
+      table {
+          border-collapse: collapse;
+          border-style: hidden;
+          border: 4px solid #864e79;
+          background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+          width: 600px;
+          font-family: "lucida console";
+          text-align: center;
+          font-size: 15px;
+      }
+      
+      .th,
+      td {
+          border: 1px solid #864e79;
+      }
+      
+      .center {
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+      }
+      
+      .food-image {
+          width: 100px;
+          height: 100px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+    
+
+    form {
+        border: 4px solid #864e79;
+        background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+        width: 600px;
+        padding: 50px;
+        font-family: "lucida console";
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .form2 {
+        border: 4px solid #864e79;
+        background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+        width: 400px;
+        padding: 50px;
+        font-family: "lucida console";
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .inputstyle {
+        width: 200px;
+        height: 20px;
+    }
+
+    .button {
+        width: 100px;
+        height: 30px;
+        background-color: #864e79;
+        border: none;
+        color: white;
+        text-align: center;
+        transition-duration: 0.4s;
+        cursor: pointer;
+
+    }
+
+    .button1 {
+        background-color: white;
+        color: #864e79;
+        font-family: "lucida console";
+        font-size: 15px;
+        border: 2px solid #864e79;
+    }
+
+    .button1:hover {
+        background-color: #4b2041;
+        color: white;
+    }
+
+    .previous-btn {
+        background-color: #864e79;
+        color: white;
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+     .message {
+      font-style: bold;
+      color: red;
+      font-family: "lucida console";
+      font-size: 13px;
+      text-align: center;
+  }
