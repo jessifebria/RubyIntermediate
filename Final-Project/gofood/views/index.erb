@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href='/gofood.png' />
+    <link rel="stylesheet" type="text/css" href="<%= URI("/style.css")%>">
+
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="/menus">Menus</a>
+        <a href="/categories">Categories</a>
+        <a href="/orders">Orders</a>
+        <a href="/customers">Customers</a>
+       <a href="/cart">Cart <span style="line-height:15px;word-spacing:-20px;">&#128722;
+        <span style="color:white;font-size:16px;padding:2px;position:relative;top:-10px; border-radius: 40%;background: red"><%= cart%></span></span></a>
+    
+    </div>
+
+    <h1 class="center">Menus Management</h1>
+    <h1 class="center"><a href="/newfood" class="new center button button1"> &nbsp; &#43 Add New Food &nbsp;</a></h1>
+
+        <form style='float: left; padding: 5px;' method="POST" action=/filter>
+            <div class="multiselect">
+                <div class="selectBox button1" onclick="showCheckboxes()">
+                    <select>
+                        <option>Filter Menus</option>
+                    </select>
+                    <div class="overSelect"></div>
+                </div>
+                <div id="checkboxes" class="checkboxes">
+                <br>
+                    <label><b> Category </b></label>
+                    <% categories.each do | category | %>
+                         <label> <input type="checkbox"  name="categoryid[]" value=<%=category.id%> >
+                         <%= category.name %>
+                         </label>
+                    <% end %>
+                    <br>
+                    <label><b> Price </b></label>
+                    <label>
+                        <input type="checkbox" name="price[]" value="<20000"/>&lt 20000</label>
+                    <label>
+                        <input type="checkbox" name="price[]" value="between 20000 and 50000"/>20000 - 50000</label>
+                    <label>
+                        <input type="checkbox" name="price[]" value=">50000"/>> 50000</label>
+                        <br>
+                    <label><b> Show items per page </b></label>
+                    <label>
+                        <input type="checkbox" name="showitems[]" value="5" />5</label>
+                    <label>
+                        <input type="checkbox" name="showitems[]" value="10"/>10</label>
+                    <label>
+                        <input type="checkbox" name="showitems[]" value="25"/>25</label>
+                </div>
+            </div> &nbsp;
+             <input type="submit"  value="&#128264" style="transform: rotate(270deg);" class="button1">
+        </form>
+      
+        <form class="search" action=/search method="POST" style="max-width:300px; float:left; margin-left:250px;">
+            <input type="text" placeholder="Search.." name="keyword">&nbsp;
+            <input type="submit"  value="&#128269" class="button1">
+            <button style="  visibility: hidden;" ></button> 
+            <input  style="  visibility: hidden;">
+        </form>
+    
+    <table class="center" style="width:800px;">
+        <thead>
+            <tr>
+                <b>
+                    <th>ID</th>
+                </b>
+                <b>
+                    <th>Name</th>
+                </b>
+                <b>
+                    <th>Image</th>
+                </b>
+                <b>
+                    <th>Price</th>
+                </b>
+                <b>
+                    <th>Categories</th>
+                </b>
+
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% items.each do |item| %>
+            <tr>
+                <td><%= item.id %></td>
+                <td><%= item.name %></td>
+                <td><img src ='data:image/jpeg;base64,<%= listimage["#{item.id}"] %>' height='70' width='70' class='center'></td>
+                <td><%= item.price %></td>
+                <td><%= listcategories["#{item.id}"] %></td>
+                <td>&nbsp;<a href="/addcart/<%= item.id %>" style="color:#cc0000">Add to &#128722;</a>&nbsp;</td>
+                <td>&nbsp;<a href="/show/<%= item.id %>" style="color:#cc0000">&#128065;</a>&nbsp;</td>
+                <td>&nbsp;<a href="/edit/<%= item.id%>" style="color:#cc0000">&#9998;</a>&nbsp;</td>
+                <td>&nbsp;<a href="/delete/<%= item.id%>" style="color:#cc0000">&#10006;</a>&nbsp;</td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    
+    <form class="search" action="/getpage/1" method="POST" style="max-width:300px; float:left; margin-left:230px ; margin-top:10px;">
+            <input type="submit"  value="1" class="
+             <% if "1" == active %>
+                active
+                <% else %>
+                button1
+              <% end %>
+           " style="font-size:20px">
+    </form>
+    <% for i in 2..totalpage do %>
+      <form class="search" action="/getpage/<%=i%>"  method="POST"style="max-width:300px; float:left; margin-left:5px;  margin-top:10px">
+              <input type="submit"  value="<%=i%>" class="
+              <% if "#{i}" == active %>
+                active
+                <% else %>
+                button1
+              <% end %>
+              " style="font-size:20px">
+      </form>
+    <% end %>
+    <br><br>
+    <h2 class="message center"><%= message %></h2>
+    <% $message = "" %>
+
+
+    <script>
+        var expanded = false;
+
+        function showCheckboxes() {
+            var checkboxes = document.getElementById("checkboxes");
+            if (!expanded) {
+                checkboxes.style.display = "block";
+                expanded = true;
+            } else {
+                checkboxes.style.display = "none";
+                expanded = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

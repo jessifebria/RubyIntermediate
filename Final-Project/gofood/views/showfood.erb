@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href= 'gofood.png' />
+    <link rel="stylesheet" type="text/css" href="<%= URI("/style.css")%>">
+    
+  </head>
+
+<body>
+    <div class="topnav">
+        <a href="/menus" class="active">Menus</a>
+        <a href="/categories">Categories</a>
+        <a href="/orders">Orders</a>
+        <a href="/customers">Customers</a>
+       <a href="/cart">Cart <span style="line-height:15px;word-spacing:-20px;">&#128722;
+        <span style="color:white;font-size:16px;padding:2px;position:relative;top:-10px; border-radius: 40%;background: red"><%= cart%></span></span></a>
+    
+    </div>
+    <h1 style="margin: 20px auto auto 330px;"><span><a href="/menus" class="button1 previous-btn">&#8249;</a>
+        </span>&nbsp;
+        Show Food </h1>
+        <br><br>
+    <div class="form1 center">
+    <h1><%= item.name %></h1>
+    <img src ='data:image/jpeg;base64, <%= image %>' height='200' width=200' class='center'>
+    <br> <br>
+    <h2>Price : <%= item.price %></h2>
+    <br><br>
+    <h2>Categories : <%= listcategories %></h2>
+        <br>
+    </div>
+</body>
+
+</html>

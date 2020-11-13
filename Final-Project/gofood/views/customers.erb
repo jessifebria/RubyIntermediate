@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href='/gofood.png' />
+    <link rel="stylesheet" type="text/css" href="<%= URI("/style.css")%>">
+
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="/menus">Menus</a>
+        <a href="/categories">Categories</a>
+        <a href="/orders">Orders</a>
+        <a class="active" href="/customers">Customers</a>
+        <a href="/cart">Cart <span style="line-height:15px;word-spacing:-20px;">&#128722;
+        <span style="color:white;font-size:16px;padding:2px;position:relative;top:-10px; border-radius: 40%;background: red"><%= cart%></span></span></a>
+    
+    </div>
+
+    <h1 class="center">Customers Management</h1>
+    <h1 class="center"><a href="/newcustomer" class="new center button button1"> &nbsp; &#43 Add New Customer &nbsp;</a></h1>
+     <form class="search" action=/searchcustomers method="POST" style="max-width:300px; float:right; margin-right:230px;">
+            <input type="text" placeholder="Search.." name="keyword">&nbsp;
+            <input type="submit"  value="&#128269" class="button1">
+            <button style="  visibility: hidden;" ></button> 
+            <input  style="  visibility: hidden;">
+        </form>
+    <table class="center" style="width:800px;">
+        <thead>
+            <tr>
+                <b>
+                    <th>ID</th>
+                </b>
+                <b>
+                    <th>Name</th>
+                </b>
+                <b>
+                    <th>Phone</th>
+                </b>
+                <b>
+                    <th>Total Spent</th>
+                </b>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% customers.each do |customer| %>
+            <tr>
+                <td><%= customer.id %></td>
+                <td><%= customer.name %></td>
+                <td><%= customer.phone %></td>
+                <td><%= customer.get_customer_total_order %></td>
+                <td>&nbsp;<a href="/showcustomer/<%= customer.id %>" style="color:#cc0000">&#128065;</a>&nbsp;</td>
+                <td>&nbsp;<a href="/editcustomer/<%= customer.id%>" style="color:#cc0000">&#9998;</a>&nbsp;</td>
+                <td>&nbsp;<a href="/deletecustomer/<%= customer.id%>" style="color:#cc0000">&#10006;</a>&nbsp;</td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <br>
+    <h2 class="message center"><%= message %></h2>
+    <% $message = "" %>
+
+
+    <script>
+        var expanded = false;
+
+        function showCheckboxes() {
+            var checkboxes = document.getElementById("checkboxes");
+            if (!expanded) {
+                checkboxes.style.display = "block";
+                expanded = true;
+            } else {
+                checkboxes.style.display = "none";
+                expanded = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

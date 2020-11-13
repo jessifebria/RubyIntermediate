@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href="gofood.png" />
+    <link rel="stylesheet" type="text/css" href="<%= URI("/style.css")%>">
+</head>
+
+<body>
+    <div class="topnav">
+        <a  href="/menus">Menus</a>
+        <a href="/categories" class="active">Categories</a>
+        <a href="/orders">Orders</a>
+        <a href="/customers">Customers</a>
+       <a href="/cart">Cart <span style="line-height:15px;word-spacing:-20px;">&#128722;
+        <span style="color:white;font-size:16px;padding:2px;position:relative;top:-10px; border-radius: 40%;background: red"><%= cart%></span></span></a>
+    
+    </div>
+    
+    <h1 style="margin: 20px auto auto 550px;"> Categories</h1>
+  <br><br>
+    <form class="search" action=/searchcategories method="POST" style="max-width:300px; float:right; margin-right:220px;">
+            <input type="text" placeholder="Search.." name="keyword">&nbsp;
+            <input type="submit"  value="&#128269" class="button1">
+            <button style="  visibility: hidden;" ></button> 
+            <input  style="  visibility: hidden;">
+        </form>
+    <table class="center" style="width:810px;">
+        <thead>
+            <tr>
+                <b>
+                    <th>Category ID</th>
+                </b>
+                <b>
+                    <th>Category Name</th>
+                </b>
+                <b>
+                    <th>List Item</th>
+                </b>
+
+            <th></th>
+            <th></th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categories.each do |category| %>
+            <tr>
+                <td><%= category.id %></td>
+                <td><%= category.name %></td>
+                <td><%= listitems["#{category.id}"] %></td>
+            <td>&nbsp;<a href="/editcategory/<%= category.id%>" style="color:#cc0000">&#9998;</a>&nbsp;</td>
+            <td>&nbsp;<a href="/deletecategory/<%= category.id%>" style="color:#cc0000">&#10006;</a>&nbsp;</td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    
+    <% if delete == 1 %>
+      <h2 class="message center"><%= messagedelete %></h2>
+      <% $delete = 0 %>
+    <% end %>
+
+    
+     <% if edit == 0 %>
+    <h1 class="center"> Add New Category</h1>
+    <form class="center form2" action="/addcategory" method="POST">
+        <table class="center">
+            <label for="name">Category Name :</label><br>
+            <input type="text" name="name" required class="inputstyle"> <br><br>
+            <input type="submit" value="Submit" class="button button1">
+            <h2 class="message center"><%= messagecategory %></h2>
+    </form>
+    <% $messagecategory = "" %>
+   <% else %>
+   <h1 class="center"> <%= judul %> </h1>
+    <form class="center form2" action="/editcategory/<%= category.id %>" method="POST">
+        <table class="center">
+            <label for="name">New Category Name :</label><br>
+            <input type="text" name="name" required class="inputstyle" value="<%= temp_name %>"> <br><br>
+            <input type="submit" value="Submit" class="button button1">
+            <h2 class="message center"><%= messageedit  %></h2>
+            <br><br>
+            <a class="button button1" href= "/categories" style="padding:10px;">Add New Category</a>
+    </form>
+    <% $messageedit = "" %>
+    <% end %>
+</body>
+
+</html>

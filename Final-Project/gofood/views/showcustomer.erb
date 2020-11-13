@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href= 'gofood.png' />
+    <link rel="stylesheet" type="text/css" href="<%= URI("/style.css")%>">
+    
+  </head>
+
+<body>
+    <div class="topnav">
+        <a href="/menus">Menus</a>
+        <a href="/categories">Categories</a>
+        <a href="/orders">Orders</a>
+        <a class="active" href="/customers">Customers</a>
+       <a href="/cart">Cart <span style="line-height:15px;word-spacing:-20px;">&#128722;
+        <span style="color:white;font-size:16px;padding:2px;position:relative;top:-10px; border-radius: 40%;background: red"><%= cart%></span></span></a>
+    
+    </div>
+    <h1 style="margin: 20px auto auto 200px;"><span><a href="/customers" class="button1 previous-btn">&#8249;</a>
+        </span>&nbsp;
+        Show Customers </h1>
+        <br><br>
+    <div class="form5 center">
+     <h2><b>Customer ID : </b><%= customer.id %></h2> 
+    <h2><b>Name : </b> <%= customer.name %></h2> 
+<h2><b>Phone : </b><%= customer.phone %></h2> 
+<h2><b>Total Spent : </b><%= customer.get_customer_total_order  %></h2> <br>
+<h2><b>Status : </b><%= customer.status %></h2> <br>
+
+<h2><b>List Order Transaction</b></h2>
+    <table class="center" style="width:900px;">
+        <thead>
+            <tr>
+                <b>
+                    <th>Order ID</th>
+                </b>
+                <b>
+                    <th>Order Date</th>
+                </b>
+                
+                <b>
+                    <th>Total Price</th>
+                </b>
+                <b>
+                    <th>Items Bought</th>
+                </b>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% for i in 0..listorder.length-1 do %>
+            <tr> 
+                <td><%= listorder[i]["Order ID"] %></td>
+                 <td><%= listorder[i]["Order Date"] %></td>
+                  <td><%= listorder[i]["Total"] %></td>
+                   <td><%= listorder[i]["Items Bought"] %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    
+    </div>
+</body>
+
+</html>

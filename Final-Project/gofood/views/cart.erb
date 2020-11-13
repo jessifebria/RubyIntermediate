@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="icon" type="image/png" href='/gofood.png' />
+    <link rel="stylesheet" type="text/css" href="<%= URI("/style.css")%>">
+
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="/menus">Menus</a>
+        <a href="/categories">Categories</a>
+        <a href="/orders">Orders</a>
+        <a href="/customers">Customers</a>
+        <a href="/cart" class="active">Cart <span style="line-height:15px;word-spacing:-20px;">&#128722;
+        <span style="color:white;font-size:16px;padding:2px;position:relative;top:-10px; border-radius: 40%;background: red"><%= cart.length%> </span></span></a>
+    </div>
+    <h1 class="center">Cart</h1>
+    <h2 id="time" style="text-align:right;margin-right:210px"></h2>
+    <form class="form3 center" action="/addorder" method="POST">
+    <table class="center" style="width:800px;">
+        <thead>
+            <tr>
+                <b>
+                    <th>Menu ID</th>
+                </b>
+                <b>
+                    <th>Name</th>
+                </b>
+                <b>
+                    <th>Price</th>
+                </b>
+                <b>
+                    <th>Quantity</th>
+                </b>
+                <b>
+                    <th>Subtotal</th>
+                </b>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if cart.length>0 %>
+                <% total =0 %>
+                <% for i in 0..cart.length-1 do %>
+                <% total += cart[i].item.price * cart[i].quantity %>
+                    <tr>
+                        <td><%= cart[i].item.id %></td>
+                        <td><%= cart[i].item.name %></td>
+                        <td><%= cart[i].item.price %></td>
+                        <td><a href="/minquantity/<%= i %>" class="button button1"> -</a>
+                        <%= cart[i].quantity %>
+                        <a href="/addquantity/<%= i %>" class="button button1"> + </a>
+                        </td>
+                        <td><%= cart[i].item.price * cart[i].quantity %></td>
+                        <td>&nbsp;<a href="/deletecart/<%= i%>" style="color:#cc0000">&#10006;</a>&nbsp;</td>
+                    </tr>
+                <% end %>
+             <% end %>
+        </tbody>
+    </table>
+    <h2 >TOTAL ORDER : <%= total %></h2>
+
+    <br>
+    Customer 
+    <select name="customerid">
+         <% customers.each do | customer | %>
+            <option value=<%=customer.id%>><%= customer.name %></option>
+         <% end %>
+	</select>
+    <br><br>
+    <a href="/deleteorder" class="button button1">Remove All </a>
+    &emsp;
+    <input type="submit" value="Submit Order" class="button2 button3">
+    </form>
+    <br>
+    <h2 class="message center"><%= message %></h2>
+    <% $message = "" %>
+
+
+    <script>
+
+        function time() {
+            var d = new Date();
+            var s = d.getSeconds();
+            var m = d.getMinutes();
+            var h = d.getHours();
+             document.getElementById("time").innerHTML =h + ":" + m + ":" + s +" WIB";
+        }
+
+        setInterval(time, 1);
+    </script>
+
+</body>
+
+</html>
