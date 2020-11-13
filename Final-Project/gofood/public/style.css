@@ -1,0 +1,286 @@
+
+      body {
+          background-image: url('bg.jpg');
+          cursor: url(http://cur.cursors-4u.net/cursors/cur-11/cur1054.cur), auto;
+      }
+      /* MENU BAR */
+      .topnav {
+        overflow: hidden;
+        background-color: #864e79;
+      }
+      
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 13px 12px;
+        text-decoration: none;
+        font-size: 16px;
+      }
+      
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      
+      .topnav a.active {
+        background-color: rgb(243, 224, 224);
+        color:#864e79;
+      }
+
+/* SEARCH BAR */
+      .search input[type=text] {
+        padding: 3px;
+        font-size: 12px;
+        border: 1px solid grey;
+        /* float: left; */
+        width: 80%;
+        font-family: "lucida console";
+        background: #f1f1f1;
+      }
+      
+      
+      .search button:hover {
+        background: #864e79;
+      }
+      
+/* FILTER CSS (CHECKBOX INSIDE SELECT) */
+
+      .multiselect {
+        width: 200px;
+        position: relative;
+        float:left;
+        margin: 0px 0px 0px 225px;
+        
+      }
+      .multiselect2 {
+        width: 300px;
+        position: relative;
+        float:left;
+        margin: 0px 0px 0px 225px;
+        
+      }
+      
+      .selectBox {
+        position: relative;
+      }
+      
+      .selectBox select {
+        width: 100%;
+        font-weight: bold;
+      }
+      
+      .overSelect {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+      
+      .checkboxes {
+        display: none;
+        border: 1px #dadada solid;
+        position: absolute;
+        width: 100%;
+        background-color: white;
+      }
+      
+      .checkboxes label {
+        display: block;
+      }
+
+      label {
+        font-family: "lucida console";
+        font-size: 12px;
+      }
+      
+      option {
+        font-family: "lucida console";
+        font-size: 12px;
+      }
+
+      h1 {
+          color: #864e79;
+          font-family: "lucida console";
+          font-size: 28px;
+      }
+      h2 {
+        color: black;
+        font-family: "lucida console";
+        font-size: 17px;
+    }
+      
+      a {
+            color: rgb(46, 39, 39);
+            font-family: "lucida console";
+            font-size: 15px;
+            text-decoration: underline;
+        }
+
+      .a1 {
+          color: rgb(46, 39, 39);
+          font-family: "lucida console";
+          font-size: 15px;
+          text-decoration: underline;
+      }
+      
+      .new {
+          font-style: bold;
+          color: #864e79;
+          font-family: "lucida console";
+          font-size: 18px;
+          text-decoration: underline;
+      }
+
+      
+      table {
+          border-collapse: collapse;
+          border-style: hidden;
+          border: 4px solid #864e79;
+          background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+          width: 600px;
+          font-family: "lucida console";
+          text-align: center;
+          font-size: 15px;
+      }
+      
+      .th,
+      td {
+          border: 1px solid #864e79;
+      }
+      
+      .center {
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+      }
+      
+      .food-image {
+          width: 100px;
+          height: 100px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+    
+
+    .form1 {
+        border: 4px solid #864e79;
+        background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+        width: 600px;
+        padding: 50px;
+        font-family: "lucida console";
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .form2 {
+        border: 4px solid #864e79;
+        background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+        width: 400px;
+        padding: 50px;
+        font-family: "lucida console";
+        text-align: center;
+        font-size: 15px;
+    }
+    
+    .form3 {
+      border: 4px solid #864e79;
+      background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+      width: 800px;
+      padding: 30px;
+      font-family: "lucida console";
+      text-align: center;
+      font-size: 15px;
+  }
+  .form5 {
+    border: 4px solid #864e79;
+    background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+    width: 950px;
+    padding: 10px;
+    font-family: "lucida console";
+    text-align: center;
+    font-size: 15px;
+}
+  .form4 {
+    border: 4px solid #864e79;
+    background: linear-gradient(45deg, #f8d1e0, #afcbff, #d291bc, #afcbff, #f8d1e0);
+    width: 1150px;
+    padding: 10px;
+    font-family: "lucida console";
+    text-align: center;
+    font-size: 15px;
+}
+    .inputstyle {
+        width: 200px;
+        height: 20px;
+    }
+
+    .button {
+        width: 100px;
+        height: 30px;
+        background-color: #864e79;
+        border: none;
+        color: white;
+        text-align: center;
+        transition-duration: 0.4s;
+        cursor: pointer;
+
+    }
+    .button2 {
+      width: 150px;
+      height: 30px;
+      background-color: #864e79;
+      border: none;
+      color: white;
+      text-align: center;
+      transition-duration: 0.4s;
+      cursor: pointer;
+
+  }
+    .active {
+        background-color: #864e79;
+        color:white;
+        font-family: "lucida console";
+        font-size: 15px;
+        border: 2px solid white;
+    }
+
+    .button3 {
+      background-color: rgb(199, 235, 214);
+      color: #864e79;
+      font-family: "lucida console";
+      font-size: 15px;
+      border: 2px solid #864e79;
+  }
+  .button3:hover {
+    background-color: #4b2041;
+    color: white;
+}
+    .button1 {
+        background-color: white;
+        color: #864e79;
+        font-family: "lucida console";
+        font-size: 15px;
+        border: 2px solid #864e79;
+    }
+
+    .button1:hover {
+        background-color: #4b2041;
+        color: white;
+    }
+
+    .previous-btn {
+        background-color: #864e79;
+        color: white;
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+     .message {
+      font-style: bold;
+      color: red;
+      font-family: "lucida console";
+      font-size: 13px;
+      text-align: center;
+  }
