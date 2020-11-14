@@ -27,6 +27,7 @@ class Customer
             $client.query("insert into customers(name,phone,status) value('#{name}','#{phone}','active')")
             message = "Berhasil insert data customers nama #{name}, phone #{phone}"
         rescue => exception
+            puts exception.message
             message = "Gagal Insert, sudah ada nomor handphone yang sama di database!"
         end
         message

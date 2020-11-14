@@ -13,6 +13,12 @@ class ItemController
     $itemsperpage = 5
     $active = "1"
     $cart = 0
+    $keyworditem = ""
+    $categoriesidarray = Array.new
+    $pricearray = Array.new
+    $filteritem = ""
+    $categoryidparam = ""
+    $priceparam = ""
 
     def self.setcart(cart)
         $cart = cart
@@ -25,6 +31,10 @@ class ItemController
         listimage = $listimage
         listcategories = Hash.new
         categories = get_all_categories
+        keyworditem = $keyworditem 
+        categoriesidarray = $categoriesidarray
+        orderpageitem = $itemsperpage
+        pricearray = $pricearray
         totalpage = ($all_items.length/$itemsperpage.to_f).ceil()
         active = $active
         for data in items do
@@ -38,17 +48,40 @@ class ItemController
         renderer.result(binding)
     end
 
-    def self.filter(params)
-        $all_items = get_all_items_by_filter(params)
-        key= params.keys
-        if key.include?("showitems")
-            $itemsperpage = params["showitems"][-1]
-            $itemsperpage = $itemsperpage.to_i
+    def self.search(params, code)
+        if code == 1
+            $keyworditem = params["keyword"]
+        else 
+            temp = ""
+            key = params.keys
+            if key.include?("categoryid")
+                $categoriesidarray = params["categoryid"]
+                $categoryidparam = '( c.id = \'' + params["categoryid"].join('\' OR c.id = \'') + "\' ) "
+                $filteritem = $categoryidparam + " OR "
+            else
+                $categoriesidarray.clear
+                $categoryidparam = ""
+            end
+            if key.include?("price")
+                $pricearray = params["price"]
+                $priceparam = '( i.price' + params["price"].join(' OR i.price ') + " ) "
+                $filteritem = $priceparam + " OR "
+            else
+                $categoriesidarray.clear
+                $priceparam = ""
+            end
+            if key.include?("categoryid") and key.include?("price")
+                $filteritem = $categoryidparam + " AND " + $priceparam + " AND "
+            end
+            if key.include?("showitems")
+                $itemsperpage = params["showitems"][-1]
+                $itemsperpage = $itemsperpage.to_i
+            end
         end
-    end
-
-    def self.search(key)
-        $all_items = search_items(key)
+            puts key
+            puts params
+        $all_items = search_items($filteritem, $keyworditem)
+        ItemController.getpage(1)
         puts $all_items
     end
 

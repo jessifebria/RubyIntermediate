@@ -36,33 +36,65 @@
                 <br>
                     <label><b> Category </b></label>
                     <% categories.each do | category | %>
-                         <label> <input type="checkbox"  name="categoryid[]" value=<%=category.id%> >
+                         <% if categoriesidarray.include?category.id %>
+                         <label> <input type="checkbox"  name="categoryid[]" value=<%=category.id%> checked >
                          <%= category.name %>
                          </label>
+                        <%else%>
+                        <label> <input type="checkbox"  name="categoryid[]" value=<%=category.id%> >
+                         <%= category.name %>
+                         </label>
+
+                         <% end %>
                     <% end %>
                     <br>
                     <label><b> Price </b></label>
-                    <label>
-                        <input type="checkbox" name="price[]" value="<20000"/>&lt 20000</label>
-                    <label>
-                        <input type="checkbox" name="price[]" value="between 20000 and 50000"/>20000 - 50000</label>
-                    <label>
-                        <input type="checkbox" name="price[]" value=">50000"/>> 50000</label>
+                     <% if pricearray.include?"<20000" %>
+                        <label>
+                            <input type="checkbox" name="price[]" value="<20000" checked/>&lt 20000</label>
+                        <label>
+                     <%else%>
+                        <label>
+                            <input type="checkbox" name="price[]" value="<20000"/>&lt 20000</label>
+                     <% end %>
+
+                    <% if pricearray.include?"between 20000 and 50000" %>
+                        <label>
+                            <input type="checkbox" name="price[]" value="between 20000 and 50000" checked/>20000 - 50000</label>
+                        <label>
+                     <%else%>
+                        <label>
+                            <input type="checkbox" name="price[]" value="between 20000 and 50000"/>20000 - 50000</label>
+                     <% end %>
+
+                       <% if pricearray.include?">50000" %>
+                        <label>
+                            <input type="checkbox" name="price[]" value=">50000" checked/>> 50000</label>
+                        <label>
+                     <%else%>
+                        <label>
+                            <input type="checkbox" name="price[]" value=">50000"/>> 50000</label>
+                     <% end %>
+
                         <br>
                     <label><b> Show items per page </b></label>
-                    <label>
-                        <input type="checkbox" name="showitems[]" value="5" />5</label>
-                    <label>
-                        <input type="checkbox" name="showitems[]" value="10"/>10</label>
-                    <label>
-                        <input type="checkbox" name="showitems[]" value="25"/>25</label>
+                   <% for i in 1..5 do %>
+                     <label>
+                        <%index = i*5%>
+                        <% if orderpageitem == index %>
+                            <input type="checkbox" name="showitems[]" value="<%= index %>" checked/> <%= index  %>
+                        <% else %>
+                            <input type="checkbox" name="showitems[]" value="<%= index %>"/> <%= index  %>
+                        <% end %>
+                     </label>
+                <% end %>
                 </div>
             </div> &nbsp;
              <input type="submit"  value="&#128264" style="transform: rotate(270deg);" class="button1">
         </form>
       
         <form class="search" action=/search method="POST" style="max-width:300px; float:left; margin-left:250px;">
-            <input type="text" placeholder="Search.." name="keyword">&nbsp;
+            <input type="text" value ="<%= $keyworditem %>" name="keyword">&nbsp;
             <input type="submit"  value="&#128269" class="button1">
             <button style="  visibility: hidden;" ></button> 
             <input  style="  visibility: hidden;">

@@ -40,32 +40,16 @@ class Item
     end
 end
 
-def get_all_items_by_filter(params)
-    key = params.keys
-    price =""
-    cat_group =""
-    if key.include?("price")
-        price= params["price"].join(" or price ")
-    end
-    if  key.include?("categoryid")  
-        cat = params["categoryid"].join("' or category_id = '")
-        cat_group = "and ( category_id = '#{cat}')" 
-    end
-    rawData = $client.query("select id,name,price from items where price #{price} ")
-    items = Array.new
-    rawData.each do | data |
-        rawData2 = $client.query("select count(*) from categorydetails where item_id = '#{data["id"]}' #{cat_group}")
-        count = rawData2.each[0]["count(*)"]
-        if count>0 and is_item_deleted?("#{data["id"]}")==false
-            items.push(get_item_byid(data["id"]))
-        end
-    end
-    return items
-end
-
-def search_items(key)
-    rawData = $client.query("SELECT items.id FROM (items JOIN categorydetails ON items.id = categorydetails.item_id) JOIN categories ON categorydetails.category_id = categories.id
-    WHERE  items.name LIKE '%#{key}%' or items.price LIKE '%#{key}%' OR items.id LIKE '%#{key}%' or categories.name LIKE '%#{key}%'")
+def search_items(filter, key)
+    puts "SELECT i.id FROM (items i JOIN categorydetails cd ON i.id = cd.item_id) 
+    JOIN categories c ON cd.category_id = c.id
+    WHERE #{filter} ( i.name LIKE '%#{key}%' or i.price LIKE '%#{key}%' OR i.id LIKE '%#{key}%' or c.name LIKE '%#{key}%' )
+    order by i.id ASC"
+    
+    rawData = $client.query("SELECT i.id FROM (items i JOIN categorydetails cd ON i.id = cd.item_id) 
+    JOIN categories c ON cd.category_id = c.id
+    WHERE #{filter} ( i.name LIKE '%#{key}%' or i.price LIKE '%#{key}%' OR i.id LIKE '%#{key}%' or c.name LIKE '%#{key}%' )
+    order by i.id ASC")
     items = Array.new
     rawData.each do | data |
         if  is_item_deleted?("#{data["id"]}")==false
@@ -85,7 +69,7 @@ def is_item_deleted?(id)
 end
 
 def get_all_items
-    rawData = $client.query("select id,name,price from items order by id")
+    rawData = $client.query("select id,name,price from items order by id ASC")
     items = Array.new
     rawData.each do | data |
         if  is_item_deleted?("#{data["id"]}")==false

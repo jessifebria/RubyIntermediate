@@ -5,6 +5,8 @@ require_relative '../gofood/controllers/customercontroller'
 require_relative '../gofood/controllers/cartcontroller'
 require_relative '../gofood/controllers/ordercontroller'
 require_relative '../gofood/controllers/awscontroller'
+require 'prawn'
+require 'prawn/table'
 
 # MENUS
 get '/menus' do
@@ -12,8 +14,7 @@ get '/menus' do
 end
 
 post '/filter' do
-    ItemController.filter(params)
-    ItemController.getpage(1)
+    ItemController.search(params,0)
     redirect '/menus'
 end
 
@@ -27,8 +28,7 @@ post '/getpage/:id' do
 end
 
 post '/search' do
-    ItemController.search(params["keyword"])
-    ItemController.getpage(1)
+    ItemController.search(params,1)
     redirect '/menus'
 end
 
@@ -144,6 +144,21 @@ post '/getorderpage/:id' do
     redirect '/orders'
 end
 
+get '/download' do 
+    content_type 'application/pdf'
+    listorder = OrderController.getcurrentlistorder
+    pdf = Prawn::Document.new
+    table_data = Array.new
+    table_data << ["Order ID","Order Date","Customer", "Total", "Items Bought"]
+    puts "=========="
+    puts listorder
+    for i in 0..listorder.length-1 do
+        table_data << [listorder[i]["Order ID"], listorder[i]["Order Date"], listorder[i]["Customer"] , listorder[i]["Total"] ,listorder[i]["Items Bought"]]
+    end
+    pdf.table(table_data, :width => 500, :cell_style => { inline_format: true })
+    pdf.render
+ end
+
 # CART
 
 get '/cart' do
@@ -179,3 +194,5 @@ post '/addorder' do
     CartController.addorder(params)
     redirect '/cart'
 end
+
+

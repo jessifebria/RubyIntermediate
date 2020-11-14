@@ -89,6 +89,10 @@ class OrderController
         puts "START #{start}"
         puts "FINISH #{finish}"
     end
+
+    def self.getcurrentlistorder
+       $allorder
+    end
 end
 
 # params = {"month"=>["13"], "year"=>["2020"]}
